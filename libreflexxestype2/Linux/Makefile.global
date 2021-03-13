@@ -36,8 +36,8 @@ SYSTEM_LIBS=-lstdc++
 DEBUG_EXE_DIR=debug/bin
 DEBUG_OBJ_DIR=debug/obj
 DEBUG_LIB_DIR=debug/lib
-DEBUG_CC= g++ -c -I $(INCLUDE_DIR) -D$(TARGET_OS) -ggdb
-DEBUG_CL= g++ $(SYSTEM_LIBS) -gddb
+DEBUG_CC= g++ -c -I $(INCLUDE_DIR) -D$(TARGET_OS)# -ggdb (commented by AndyZ, Mar 12 2021)
+DEBUG_CL= g++ $(SYSTEM_LIBS)# -gddb (commented by AndyZ, Mar 12 2021)
 
 RELEASE_EXE_DIR=release/bin
 RELEASE_OBJ_DIR=release/obj
