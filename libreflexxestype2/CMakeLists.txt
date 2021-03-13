@@ -23,11 +23,13 @@ if(SUPPORTED MATCHES "true")
   # Build Reflexxes library
   add_custom_target(
     build_reflexxes ALL
-        #COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" -E copy_directory ${PROJECT_SOURCE_DIR}/Linux ${PROJECT_NAME}
         COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        #COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/Linux ${PROJECT_NAME}
   )
 
-  # Install library and header files
+  # Install library
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a COPYONLY)
+
+  # Install header files
+  install(DIRECTORY include/ DESTINATION include)
 
 endif()
