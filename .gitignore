@@ -1,2 +1,5 @@
-# Ignore Reflexxes library build files
-libreflexxestype2/Linux
+# Ignore Reflexxes library files but keep the directories for the build process
+libreflexxestype2/Linux/x64/debug/*
+libreflexxestype2/Linux/x64/release/*
+libreflexxestype2/Linux/x86/debug/*
+libreflexxestype2/Linux/x86/release/*
