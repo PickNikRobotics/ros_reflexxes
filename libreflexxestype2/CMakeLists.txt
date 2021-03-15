@@ -3,6 +3,10 @@ project(libreflexxestype2)
 
 find_package(ament_cmake REQUIRED)
 
+include_directories(
+  include
+)
+
 find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin) 
 if(CMAKE_DPKG)
   exec_program(dpkg ARGS --print-architecture OUTPUT_VARIABLE CMAKE_DPKG_ARCH)
@@ -20,18 +24,33 @@ endif()
 
 if(SUPPORTED MATCHES "true")
  
-  # Build Reflexxes library
+  # Build Reflexxes library with a Make file
   add_custom_target(
-    build_reflexxes ALL
+    reflexxes ALL
         COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        # Install library
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a
   )
 
-  # Install header files
-  install(DIRECTORY include/ DESTINATION include)
+  # Export Reflexxes library for ROS
+  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a)
+  ament_target_dependencies(reflexxestype2 ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  set_target_properties(reflexxestype2 PROPERTIES LINKER_LANGUAGE CXX)
 
-  ament_export_libraries(export_${PROJECT_NAME})
+  ament_export_libraries(reflexxestype2)
   ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 
+  # Install header files
+  install(DIRECTORY include/ DESTINATION include/libreflexxestype2)
+
+
+  install(
+    TARGETS reflexxestype2
+    EXPORT export_ftd2xx
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include
+  )
+
 endif()
+
+ament_package()
