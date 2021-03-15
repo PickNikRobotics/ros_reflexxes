@@ -27,7 +27,7 @@ if(SUPPORTED MATCHES "true")
   )
 
   # Install library
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a COPYONLY)
+#  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a COPYONLY)
 
   # Install header files
   install(DIRECTORY include/ DESTINATION include)

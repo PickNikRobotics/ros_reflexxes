@@ -1,2 +1,2 @@
-# Ignore Reflexxes library build files
-libreflexxestype2/Linux
+# Ignore Reflexxes build artifacts
+libreflexxestype2/Linux/x64/*
