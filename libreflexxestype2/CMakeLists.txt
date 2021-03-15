@@ -32,4 +32,7 @@ if(SUPPORTED MATCHES "true")
   # Install header files
   install(DIRECTORY include/ DESTINATION include)
 
+  ament_export_libraries(export_${PROJECT_NAME})
+  ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
+
 endif()
