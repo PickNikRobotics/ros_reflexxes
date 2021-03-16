@@ -20,9 +20,8 @@ endif()
 if(SUPPORTED MATCHES "true")
  
   # Build Reflexxes library with a Make file
-  add_custom_target(
-    reflexxes ALL
-        COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  add_custom_target(reflexxes ALL
+    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
 
   # Export Reflexxes library for ROS
@@ -43,20 +42,10 @@ if(SUPPORTED MATCHES "true")
   # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
   install(DIRECTORY include/ DESTINATION include/)
 
-#  add_custom_target(CopyAndRename
-#      COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a
-#  )
-#  file(RENAME ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libreflexxestype2.a)
-
-#  add_custom_command(CopyAndRename POST_BUILD
-#    COMMAND ${CMAKE_COMMAND} -E copy ${LOC} ${PROJECT_SOURCE_DIR}/${INSTALL_DIR}
-#  )
-
   install(
     TARGETS reflexxestype2
     EXPORT export_reflexxestype2
     LIBRARY DESTINATION lib
-#    ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin
     INCLUDES DESTINATION include
   )
