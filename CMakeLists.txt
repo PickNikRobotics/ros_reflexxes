@@ -41,7 +41,7 @@ if(SUPPORTED MATCHES "true")
   ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 
   # Install header files
-  install(DIRECTORY include/ DESTINATION include/libreflexxestype2)
+  install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION include/${PROJECT_NAME}/)
 
   install(
     TARGETS reflexxestype2
