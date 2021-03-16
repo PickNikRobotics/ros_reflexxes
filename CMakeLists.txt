@@ -41,7 +41,9 @@ if(SUPPORTED MATCHES "true")
   ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 
   # Install header files
-  install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION include/${PROJECT_NAME}/)
+  install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
+  # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
+  install(DIRECTORY include/ DESTINATION include/)
 
   install(
     TARGETS reflexxestype2
