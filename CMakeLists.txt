@@ -25,7 +25,7 @@ if(SUPPORTED MATCHES "true")
   )
 
   # Export Reflexxes library for ROS
-  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so)
+  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a)
   target_include_directories(reflexxestype2 PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>"
@@ -41,6 +41,15 @@ if(SUPPORTED MATCHES "true")
   install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
   # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
   install(DIRECTORY include/ DESTINATION include/)
+
+#  add_custom_target(CopyAndRename
+#      COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a
+#  )
+#  file(RENAME ${CMAKE_INSTALL_PREFIX}/lib/libReflexxesTypeII.a ${CMAKE_INSTALL_PREFIX}/lib/libreflexxestype2.a)
+
+#  add_custom_command(CopyAndRename POST_BUILD
+#    COMMAND ${CMAKE_COMMAND} -E copy ${LOC} ${PROJECT_SOURCE_DIR}/${INSTALL_DIR}
+#  )
 
   install(
     TARGETS reflexxestype2
