@@ -3,9 +3,7 @@ project(libreflexxestype2)
 
 find_package(ament_cmake REQUIRED)
 
-include_directories(
-  include
-)
+include_directories(include)
 
 find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin) 
 if(CMAKE_DPKG)
@@ -28,17 +26,17 @@ if(SUPPORTED MATCHES "true")
   )
 
   # Export Reflexxes library for ROS
-  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a)
+  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so)
   target_include_directories(reflexxestype2 PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>"
   )
-  ament_target_dependencies(reflexxestype2 ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  ament_target_dependencies(reflexxestype2)
   set_target_properties(reflexxestype2 PROPERTIES LINKER_LANGUAGE CXX)
 
   ament_export_include_directories(include)
   ament_export_targets(export_reflexxestype2 HAS_LIBRARY_TARGET)
-  ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
+  ament_export_dependencies()
 
   # Install header files
   install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
