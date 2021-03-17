@@ -44,6 +44,44 @@
 
 namespace reflexxes_wrapper
 {
+
+/** \brief Set the current state (position, velocity, and acceleration). */
+inline bool setCurrentState(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions, const std::vector<double>& current_velocities, const std::vector<double>& current_accelerations)
+{
+  if (current_positions.size() != current_velocities.size() || current_velocities.size() != current_accelerations.size() || current_velocities.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->CurrentPositionVector->VecData[joint_idx] = current_positions.at(joint_idx);
+    reflexxes_params->CurrentVelocityVector->VecData[joint_idx] = current_velocities.at(joint_idx);
+    reflexxes_params->CurrentAccelerationVector->VecData[joint_idx] = current_accelerations.at(joint_idx);
+  }
+
+  return true;
+}
+
+/** \brief Set the target state (position and velocity). */
+inline bool setTargetState(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& target_positions, const std::vector<double>& target_velocities)
+{
+  if (target_positions.size() != target_velocities.size() || target_velocities.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->TargetPositionVector->VecData[joint_idx] = target_positions.at(joint_idx);
+    reflexxes_params->TargetVelocityVector->VecData[joint_idx] = target_velocities.at(joint_idx);
+  }
+
+  return true;
+}
+
 /** \brief Set velocity and acceleration limits. */
 inline bool setLimits(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& max_velocities, const std::vector<double>& max_accelerations)
 {
@@ -62,7 +100,7 @@ inline bool setLimits(std::unique_ptr<RMLPositionInputParameters>& reflexxes_par
   return true;
 }
 
-/** \brief Set all entries in the selection vector true, to enable all joints. */
+/** \brief Set all entries in the selection vector true, to enable all DOF. */
 inline void setSelectionVectorAllTrue(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof)
 {
   for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
