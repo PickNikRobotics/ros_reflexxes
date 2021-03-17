@@ -38,10 +38,37 @@
 
 #pragma once
 
+#include <iostream>
 #include <libreflexxestype2/ReflexxesAPI.h>
+#include <vector>
 
 namespace reflexxes_wrapper
 {
-void setLimits();
+/** \brief Set velocity and acceleration limits. */
+inline bool setLimits(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& max_velocities, const std::vector<double>& max_accelerations)
+{
+  if (max_velocities.size() != max_accelerations.size() || max_velocities.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->MaxVelocityVector->VecData[joint_idx] = max_velocities.at(joint_idx);
+    reflexxes_params->MaxAccelerationVector->VecData[joint_idx] = max_accelerations.at(joint_idx);
+  }
+
+  return true;
+}
+
+/** \brief Set all entries in the selection vector true, to enable all joints. */
+inline void setSelectionVectorAllTrue(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof)
+{
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->SelectionVector->VecData[joint_idx] = true;
+  }
+}
 
 }  // namespace reflexxes_wrapper
