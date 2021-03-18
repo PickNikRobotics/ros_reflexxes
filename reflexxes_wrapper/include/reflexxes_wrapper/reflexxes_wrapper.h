@@ -46,7 +46,7 @@ namespace reflexxes_wrapper
 {
 
 /** \brief Set the current state (position, velocity, and acceleration). */
-inline bool setCurrentState(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions, const std::vector<double>& current_velocities, const std::vector<double>& current_accelerations)
+inline bool setCurrentState(RMLPositionInputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions, const std::vector<double>& current_velocities, const std::vector<double>& current_accelerations)
 {
   if (current_positions.size() != current_velocities.size() || current_velocities.size() != current_accelerations.size() || current_velocities.size() != num_dof)
   {
@@ -65,7 +65,7 @@ inline bool setCurrentState(std::unique_ptr<RMLPositionInputParameters>& reflexx
 }
 
 /** \brief Set the current position only, do not change current velocity or acceleration */
-inline bool setCurrentPositions(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions)
+inline bool setCurrentPositions(RMLPositionInputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions)
 {
   if (current_positions.size() != num_dof)
   {
@@ -82,7 +82,7 @@ inline bool setCurrentPositions(std::unique_ptr<RMLPositionInputParameters>& ref
 }
 
 /** \brief Set the target state (position and velocity). */
-inline bool setTargetState(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& target_positions, const std::vector<double>& target_velocities)
+inline bool setTargetState(RMLPositionInputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& target_positions, const std::vector<double>& target_velocities)
 {
   if (target_positions.size() != target_velocities.size() || target_velocities.size() != num_dof)
   {
@@ -100,7 +100,7 @@ inline bool setTargetState(std::unique_ptr<RMLPositionInputParameters>& reflexxe
 }
 
 /** \brief Set velocity and acceleration limits. */
-inline bool setLimits(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& max_velocities, const std::vector<double>& max_accelerations)
+inline bool setLimits(RMLPositionInputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& max_velocities, const std::vector<double>& max_accelerations)
 {
   if (max_velocities.size() != max_accelerations.size() || max_velocities.size() != num_dof)
   {
@@ -118,7 +118,7 @@ inline bool setLimits(std::unique_ptr<RMLPositionInputParameters>& reflexxes_par
 }
 
 /** \brief Set all entries in the selection vector true, to enable all DOF. */
-inline void setSelectionVectorAllTrue(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof)
+inline void setSelectionVectorAllTrue(RMLPositionInputParameters* reflexxes_params, const size_t num_dof)
 {
   for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
   {
