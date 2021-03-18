@@ -65,6 +65,25 @@ inline bool setCurrentState(RMLPositionInputParameters* reflexxes_params, const 
   return true;
 }
 
+/** \brief Reset the output struct. This might be useful if Reflexxes output is fed in as input for the next iteraion, as the Reflexxes examples do.  */
+inline bool resetOutputStruct(RMLPositionOutputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions, const std::vector<double>& current_velocities, const std::vector<double>& current_accelerations)
+{
+  if (current_positions.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->NewPositionVector->VecData[joint_idx] = current_positions.at(joint_idx);
+    reflexxes_params->NewVelocityVector->VecData[joint_idx] = current_velocities.at(joint_idx);
+    reflexxes_params->NewAccelerationVector->VecData[joint_idx] = current_accelerations.at(joint_idx);
+  }
+
+  return true;
+}
+
 /** \brief Set the current position only, do not change current velocity or acceleration */
 inline bool setCurrentPositions(RMLPositionInputParameters* reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions)
 {
