@@ -38,6 +38,7 @@
 
 #pragma once
 
+#include <float.h>
 #include <iostream>
 #include <libreflexxestype2/ReflexxesAPI.h>
 #include <vector>
@@ -112,6 +113,7 @@ inline bool setLimits(RMLPositionInputParameters* reflexxes_params, const size_t
   {
     reflexxes_params->MaxVelocityVector->VecData[joint_idx] = max_velocities.at(joint_idx);
     reflexxes_params->MaxAccelerationVector->VecData[joint_idx] = max_accelerations.at(joint_idx);
+    reflexxes_params->MaxJerkVector->VecData[joint_idx] = DBL_MAX;
   }
 
   return true;
@@ -123,6 +125,17 @@ inline void setSelectionVectorAllTrue(RMLPositionInputParameters* reflexxes_para
   for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
   {
     reflexxes_params->SelectionVector->VecData[joint_idx] = true;
+  }
+}
+
+/** \brief Set positions/velocities/accelerations to zero */
+inline void initializePositionInputStateToZeros(RMLPositionInputParameters* reflexxes_params, const size_t num_dof)
+{
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->CurrentPositionVector->VecData[joint_idx] = 0;
+    reflexxes_params->CurrentVelocityVector->VecData[joint_idx] = 0;
+    reflexxes_params->CurrentAccelerationVector->VecData[joint_idx] = 0;
   }
 }
 
