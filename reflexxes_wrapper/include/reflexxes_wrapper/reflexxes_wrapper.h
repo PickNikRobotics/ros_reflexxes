@@ -64,6 +64,23 @@ inline bool setCurrentState(std::unique_ptr<RMLPositionInputParameters>& reflexx
   return true;
 }
 
+/** \brief Set the current position only, do not change current velocity or acceleration */
+inline bool setCurrentPositions(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& current_positions)
+{
+  if (current_positions.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->CurrentPositionVector->VecData[joint_idx] = current_positions.at(joint_idx);
+  }
+
+  return true;
+}
+
 /** \brief Set the target state (position and velocity). */
 inline bool setTargetState(std::unique_ptr<RMLPositionInputParameters>& reflexxes_params, const size_t num_dof, const std::vector<double>& target_positions, const std::vector<double>& target_velocities)
 {
