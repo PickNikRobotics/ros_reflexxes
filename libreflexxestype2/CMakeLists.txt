@@ -20,8 +20,9 @@ endif()
 if(SUPPORTED MATCHES "true")
  
   # Build Reflexxes library with a Make file
-  add_custom_target(reflexxes ALL
-    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
+    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}  
   )
 
   # Export Reflexxes library for ROS
