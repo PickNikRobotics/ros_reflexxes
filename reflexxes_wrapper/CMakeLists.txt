@@ -6,14 +6,18 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
-  INCLUDE_DIRS include
+  INCLUDE_DIRS
+    include
+  CATKIN_DEPENDS
+    libreflexxestype2
 )
 
-include_directories(include)
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
 
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+install(DIRECTORY include
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/${PROJECT_NAME}
   FILES_MATCHING PATTERN "*.h"
   )
-
-#ament_export_include_directories(include)
