@@ -7,9 +7,8 @@
   <maintainer email="zelenak@picknik.ai">Andy Zelenak</maintainer>
   <license>Proprietary</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
 
-  <export>
-    <build_type>ament_cmake</build_type>
-  </export>
+  <depend>libreflexxestype2</depend>
+
 </package>

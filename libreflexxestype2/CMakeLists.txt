@@ -1,9 +1,20 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.0.2)
 project(libreflexxestype2)
 
-find_package(ament_cmake REQUIRED)
+## Compile as C++14, supported in ROS Melodic and newer
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-include_directories(include)
+find_package(catkin REQUIRED COMPONENTS)
+
+catkin_package(
+  INCLUDE_DIRS include
+)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
 
 find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin) 
 if(CMAKE_DPKG)
@@ -31,31 +42,17 @@ if(SUPPORTED MATCHES "true")
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>"
   )
-  ament_target_dependencies(reflexxestype2)
   set_target_properties(reflexxestype2 PROPERTIES LINKER_LANGUAGE CXX)
 
-  ament_export_include_directories(include)
-  ament_export_targets(export_reflexxestype2 HAS_LIBRARY_TARGET)
-  ament_export_dependencies()
-
-  # Install header files
-  install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
-  # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
-  install(DIRECTORY include/ DESTINATION include/)
-
-  install(
-    TARGETS reflexxestype2
-    EXPORT export_reflexxestype2
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
+  install(TARGETS reflexxestype2
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 
-  # Install library file
-  install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib RENAME libreflexxestype2.a
+  install(DIRECTORY include/
+    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/${PROJECT_NAME}/
+    FILES_MATCHING PATTERN "*.h"
   )
 
 endif()
-
-ament_package()
