@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS)
 
 catkin_package(
   INCLUDE_DIRS include
+  LIBRARIES reflexxestype2
 )
 
 include_directories(
@@ -52,7 +53,6 @@ if(SUPPORTED MATCHES "true")
 
   install(DIRECTORY include/
     DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/${PROJECT_NAME}/
-    FILES_MATCHING PATTERN "*.h"
   )
 
 endif()
