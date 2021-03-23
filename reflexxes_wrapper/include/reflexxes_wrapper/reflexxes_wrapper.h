@@ -152,7 +152,7 @@ inline void initializePositionInputStateToZeros(RMLPositionInputParameters* refl
 {
   for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
   {
-    reflexxes_params->CurrentPositionVector->VecData[joint_idx] = 0;
+    reflexxes_params->CurrentPositionVector->VecData[joint_idx] = std::numeric_limits<double>::quiet_NaN();
     reflexxes_params->CurrentVelocityVector->VecData[joint_idx] = 0;
     reflexxes_params->CurrentAccelerationVector->VecData[joint_idx] = 0;
   }
