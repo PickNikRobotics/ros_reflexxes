@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(libreflexxestype2)
 
-## Compile as C++14, supported in ROS Melodic and newer
+# Compile as C++14, supported in ROS Melodic and newer
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
@@ -9,7 +9,6 @@ find_package(catkin REQUIRED COMPONENTS)
 
 catkin_package(
   INCLUDE_DIRS include
-#  LIBRARIES reflexxestype2
 )
 
 include_directories(
@@ -35,24 +34,13 @@ if(SUPPORTED MATCHES "true")
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
     COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-#    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}
   )
-
-  # Export Reflexxes library for ROS
-#  add_library(reflexxestype2)
-#  set_target_properties(reflexxestype2 PROPERTIES LINKER_LANGUAGE CXX)
-#  target_link_libraries(reflexxestype2
-#    ${catkin_LIBRARIES}
-#    ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so
-#  )
 
   add_custom_target(
     copy_reflexxes ALL
-        # copy headers to devel space (catkin does not like headers in source space)
-        # COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME} ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}/
-        # copy libs, set-up soname chain
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}
-        COMMAND ${CMAKE_COMMAND} -E create_symlink libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libreflexxestypeII.so
+    # copy libs, set-up soname chain
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}
+    COMMAND ${CMAKE_COMMAND} -E create_symlink libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libreflexxestypeII.so
   )
 
   install(DIRECTORY include/
