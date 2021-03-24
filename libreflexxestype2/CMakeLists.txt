@@ -30,14 +30,9 @@ endif()
 
 if(SUPPORTED MATCHES "true")
  
-  # Build Reflexxes library with a Make file
-  add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
-    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  )
-
   add_custom_target(
-    copy_reflexxes ALL
+    build_reflexxes ALL
+    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     # copy libs, set-up soname chain
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}
     COMMAND ${CMAKE_COMMAND} -E create_symlink libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libreflexxestypeII.so
