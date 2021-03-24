@@ -50,8 +50,8 @@
 #define __RMLPositionInputParameters__
 
 
-#include <RMLInputParameters.h>
-#include <RMLVector.h>
+#include <libreflexxestype2/RMLInputParameters.h>
+#include <libreflexxestype2/RMLVector.h>
 #include <string.h>
 #include <math.h>
 

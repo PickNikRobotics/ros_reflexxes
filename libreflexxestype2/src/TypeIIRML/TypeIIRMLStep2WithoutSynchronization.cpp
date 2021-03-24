@@ -42,13 +42,13 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLStep2WithoutSynchronization.h>
-#include <TypeIIRMLStep1Profiles.h>
-#include <TypeIIRMLDecisionTree2.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLDecisions.h>
-#include <TypeIIRMLStep2Profiles.h>
-#include <TypeIIRMLStep2IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep2WithoutSynchronization.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree2.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLDecisions.h>
+#include <libreflexxestype2/TypeIIRMLStep2Profiles.h>
+#include <libreflexxestype2/TypeIIRMLStep2IntermediateProfiles.h>
 
 
 //****************************************************************************

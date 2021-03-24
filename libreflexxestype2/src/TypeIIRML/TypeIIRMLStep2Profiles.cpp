@@ -42,9 +42,9 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLStep2Profiles.h>
-#include <TypeIIRMLPolynomial.h>
-#include <TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLStep2Profiles.h>
+#include <libreflexxestype2/TypeIIRMLPolynomial.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
 #include <math.h>
 
 

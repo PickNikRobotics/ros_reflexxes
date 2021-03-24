@@ -41,14 +41,14 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLStep1Profiles.h>
-#include <TypeIIRMLMath.h>
-#include <RMLPositionInputParameters.h>
-#include <RMLPositionOutputParameters.h>
-#include <RMLVector.h>
-#include <ReflexxesAPI.h>
-#include <RMLPositionFlags.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
+#include <libreflexxestype2/RMLVector.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
+#include <libreflexxestype2/RMLPositionFlags.h>
 
 using namespace TypeIIRMLMath;
 

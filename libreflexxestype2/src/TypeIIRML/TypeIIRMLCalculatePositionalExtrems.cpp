@@ -41,11 +41,11 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLPolynomial.h>
-#include <RMLPositionOutputParameters.h>
-#include <RMLPositionInputParameters.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLPolynomial.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
 
 
 

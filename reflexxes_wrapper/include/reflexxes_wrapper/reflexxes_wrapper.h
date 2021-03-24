@@ -40,7 +40,7 @@
 
 #include <float.h>
 #include <iostream>
-#include <ReflexxesAPI.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
 #include <vector>
 
 namespace reflexxes_wrapper

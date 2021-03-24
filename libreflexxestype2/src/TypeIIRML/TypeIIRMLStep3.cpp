@@ -41,11 +41,11 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <RMLPositionInputParameters.h>
-#include <RMLPositionOutputParameters.h>
-#include <ReflexxesAPI.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
 
 
 //*******************************************************************************************

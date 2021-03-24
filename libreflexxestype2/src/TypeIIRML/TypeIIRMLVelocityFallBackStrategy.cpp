@@ -41,9 +41,9 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLVelocity.h>
-#include <RMLVelocityInputParameters.h>
-#include <RMLVelocityOutputParameters.h>
+#include <libreflexxestype2/TypeIIRMLVelocity.h>
+#include <libreflexxestype2/RMLVelocityInputParameters.h>
+#include <libreflexxestype2/RMLVelocityOutputParameters.h>
 
 
 using namespace TypeIIRMLMath;
