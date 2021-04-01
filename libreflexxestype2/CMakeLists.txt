@@ -35,8 +35,7 @@ if(SUPPORTED MATCHES "true")
 
   # Install header files
   install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
-  # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
-  # (destogl): This is not possible, except for adding "libreflexxestype2/" to all reflexxes includes
+# Install an extra set of header files to avoid adding "libreflexxestype2/" to all reflexxes includes.
   install(DIRECTORY include/ DESTINATION include/)
 
   install(
