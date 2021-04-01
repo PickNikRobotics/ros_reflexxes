@@ -21,26 +21,21 @@ if(SUPPORTED MATCHES "true")
  
   # Build Reflexxes library with a Make file
   add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
+    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so
     COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}  
   )
 
   # Export Reflexxes library for ROS
-  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a)
+  add_library(reflexxestype2 ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so)
   target_include_directories(reflexxestype2 PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>"
   )
-  ament_target_dependencies(reflexxestype2)
   set_target_properties(reflexxestype2 PROPERTIES LINKER_LANGUAGE CXX)
-
-  ament_export_include_directories(include)
-  ament_export_targets(export_reflexxestype2 HAS_LIBRARY_TARGET)
-  ament_export_dependencies()
 
   # Install header files
   install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME}/)
-  # TODO(andyz): This extra installation step shouldn't be necessary. Look into deleting it.
+# Install an extra set of header files to avoid adding "libreflexxestype2/" to all reflexxes includes.
   install(DIRECTORY include/ DESTINATION include/)
 
   install(
@@ -52,9 +47,13 @@ if(SUPPORTED MATCHES "true")
   )
 
   # Install library file
-  install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/static/libReflexxesTypeII.a
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib RENAME libreflexxestype2.a
+  install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so
+    DESTINATION lib RENAME libreflexxestype2.so
   )
+
+  ament_export_include_directories(include)
+  ament_export_targets(export_reflexxestype2 HAS_LIBRARY_TARGET)
+  ament_export_libraries(reflexxestype2)
 
 endif()
 
