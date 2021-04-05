@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS)
 
 catkin_package(
   INCLUDE_DIRS include
+  LIBRARIES reflexxes
 )
 
 include_directories(
@@ -16,7 +17,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin) 
+find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin)
 if(CMAKE_DPKG)
   exec_program(dpkg ARGS --print-architecture OUTPUT_VARIABLE CMAKE_DPKG_ARCH)
   if(CMAKE_DPKG_ARCH MATCHES "amd64")
@@ -29,24 +30,31 @@ if(CMAKE_DPKG)
 endif()
 
 if(SUPPORTED MATCHES "true")
- 
-  add_custom_target(
-    build_reflexxes ALL
+  # Set location of build output
+  set(libreflexxes_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so)
+
+  # Build Reflexxes library with a Make file
+  add_custom_command(
+    OUTPUT ${libreflexxes_LOCATION}
     COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    # copy libs, set-up soname chain
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}
-    COMMAND ${CMAKE_COMMAND} -E create_symlink libReflexxesTypeII.so ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libreflexxes.so
+  )
+  add_library(reflexxes ${libreflexxes_LOCATION})
+  set_target_properties(reflexxes PROPERTIES LINKER_LANGUAGE CXX)
+
+  # Copy into devel/lib
+  add_custom_command(
+    TARGET reflexxes POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy ${libreflexxes_LOCATION} ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libreflexxes.so
   )
 
-  # Install?
-  if(EXISTS "${CMAKE_INSTALL_PREFIX}/lib/")
-    ADD_CUSTOM_COMMAND(TARGET build_reflexxes POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so ${CMAKE_INSTALL_PREFIX}/lib/libreflexxes.so
-    )
-  endif()
-
+  # Install header files
   install(DIRECTORY include/${PROJECT_NAME}/
     DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   )
 
+  # Install library file
+  install(FILES ${libreflexxes_LOCATION}
+    DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    RENAME libreflexxes.so
+  )
 endif()
