@@ -1,15 +1,15 @@
 //  ---------------------- Doxygen info ----------------------
-//! \file TypeIIRMLDecisionTree2.h
+//! \file TypeIIRMLDecisionTree1A.h
 //!
 //! \brief
-//! Header file for the Step 2 decision tree of the Type II On-Line
-//! Trajectory Generation algorithm (time-synchronized case)
+//! Header file for the Step 1 decision tree 1A of the Type II On-Line
+//! Trajectory Generation algorithm
 //!
 //! \details
-//! Header file for the function TypeIIRMLMath::TypeIIRMLDecisionTree2(),
-//! which contains the decision tree of the Step 2 of the On-Line
-//! Trajectory Generation algorithm. It synchronizes all selected
-//! degrees of freedom to the synchronization time (cf. Step 1). Details
+//! Header file for the function TypeIIRMLMath::TypeIIRMLDecisionTree1A(),
+//! which contains the first decision tree (1A) of the Step 1 of the On-
+//! Line Trajectory Generation algorithm. It calculates the minimum possible
+//! trajectory execution time for one single degree of freedom. Details
 //! on this methodology may be found in\n
 //! \n
 //! <b>T. Kroeger.</b>\n
@@ -52,27 +52,26 @@
 //  ----------------------------------------------------------
 
 
-#ifndef __TypeIIRMLDecisionTree2__
-#define __TypeIIRMLDecisionTree2__
+#ifndef __TypeIIRMLDecisionTree1A__
+#define __TypeIIRMLDecisionTree1A__
 
-
-#include <TypeIIRMLPolynomial.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
 
 
 namespace TypeIIRMLMath
 {
 
 //  ---------------------- Doxygen info ----------------------
-//! \fn void TypeIIRMLDecisionTree2(const double&CurrentPosition, const double &CurrentVelocity, const double &TargetPosition, const double &TargetVelocity, const double &MaxVelocity, const double &MaxAcceleration, const double &SynchronizationTime, MotionPolynomials *PolynomialsInternal)
+//! \fn void TypeIIRMLDecisionTree1A(const double&CurrentPosition, const double &CurrentVelocity, const double &TargetPosition, const double &TargetVelocity, const double &MaxVelocity, const double &MaxAcceleration, Step1_Profile *AppliedProfile, double *MinimalExecutionTime)
 //!
 //! \brief
-//! This function contains the decision tree of the Step 2 of the
+//! This function contains the decision tree 1A of the Step 1 of the
 //! Type II On-Line Trajectory Generation algorithm
 //!
 //! \details
-//! This function synchronizes the trajectory for one single degree of
-//! freedom to the synchronization time \f$ t_{i}^{\,sync} \f$ and
-//! calculates all trajectory parameters.
+//! This function calculates the minimum possible trajectory execution
+//! time \f$\ _{k}t_{i}^{\,min} \f$ for DOF \f$ k \f$ at instant
+//! \f$ T_{i} \f$.
 //!
 //! \param CurrentPosition
 //! Current position value for DOF \f$ k \f$ at instant \f$ T_{i} \f$,
@@ -98,28 +97,29 @@ namespace TypeIIRMLMath
 //! Maximum allowed acceleration value for DOF \f$ k \f$ at instant
 //! \f$ T_{i} \f$, \f$\ _{k}A_{i}^{\,max} \f$
 //!
-//! \param SynchronizationTime
-//! The synchronization time \f$ t_{i}^{\,sync} \f$ that was calculated
-//! in Step 1 of the On-Line Trajectory Generation algorithm (in
-//! seconds).
+//! \param AppliedProfile
+//! A pointer to an \c int value. The index of the motion profile, which
+//! is used to achieve the minimum execution time (cf.
+//! TypeIIRMLMath::Step1_Profile) will be copied to this variable.
 //!
-//! \param PolynomialsInternal
-//! A pointer to a \c MotionPolynomials object (cf.
-//! TypeIIRMLMath::MotionPolynomials). All trajectory parameters of the
-//! synchronized Type II trajectory will be written into this object.
+//! \param MinimalExecutionTime
+//! Pointer to a \c double value: The actual result of the of this
+//! function, that is, minimum possible execution time
+//! \f$\ _{k}t_{i}^{\,min} \f$ will be copied to this variable.
 //!
-//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1A()
 //! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1B()
 //! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1C()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree2()
 //  ----------------------------------------------------------
-    void TypeIIRMLDecisionTree2(        const double        &CurrentPosition
-                                    ,   const double        &CurrentVelocity
-                                    ,   const double        &TargetPosition
-                                    ,   const double        &TargetVelocity
-                                    ,   const double        &MaxVelocity
-                                    ,   const double        &MaxAcceleration
-                                    ,   const double        &SynchronizationTime
-                                    ,   MotionPolynomials   *PolynomialsInternal);
+void TypeIIRMLDecisionTree1A(       const double    &CurrentPosition
+                                ,   const double    &CurrentVelocity
+                                ,   const double    &TargetPosition
+                                ,   const double    &TargetVelocity
+                                ,   const double    &MaxVelocity
+                                ,   const double    &MaxAcceleration
+                                ,   Step1_Profile   *AppliedProfile
+                                ,   double          *MinimalExecutionTime   );
+
 
 }   // namespace TypeIIRMLMath
 
