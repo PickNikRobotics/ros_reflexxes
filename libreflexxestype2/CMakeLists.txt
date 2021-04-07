@@ -1,15 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 project(libreflexxestype2)
 
-# Compile as C++14, supported in ROS Melodic and newer
+# ROS2 minimum versions
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 find_package(ament_cmake REQUIRED)
 
-include_directories(
-  include
-)
+include_directories(include)
 
 find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin)
 if(CMAKE_DPKG)
@@ -42,9 +40,6 @@ if(SUPPORTED MATCHES "true")
   )
 
   # Install header files
-  install(DIRECTORY include/${PROJECT_NAME}/
-    DESTINATION include/${PROJECT_NAME}
-  )
   install(DIRECTORY include/
     DESTINATION include
   )
