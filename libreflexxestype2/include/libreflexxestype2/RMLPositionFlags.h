@@ -48,7 +48,7 @@
 #define __RMLPositionFlags__
 
 
-#include <RMLFlags.h>
+#include <libreflexxestype2/RMLFlags.h>
 
 
 //  ---------------------- Doxygen info ----------------------

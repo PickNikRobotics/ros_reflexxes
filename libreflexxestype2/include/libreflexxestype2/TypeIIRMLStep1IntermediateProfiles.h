@@ -1,12 +1,12 @@
 //  ---------------------- Doxygen info ----------------------
-//! \file TypeIIRMLStep2IntermediateProfiles.h
+//! \file TypeIIRMLStep1IntermediateProfiles.h
 //!
 //! \brief
-//! Header file for intermediate profile segments of Step 2
+//! Header file for intermediate profile segments of Step 1
 //!
 //! \details
 //! Header file for trajectory execution time calculations
-//! of intermediate velocity profiles in the second step
+//! of intermediate velocity profiles in the first step
 //! of the Type II On-Line Trajectory Generation algorithm.
 //! All profile functions are part of
 //! the namespace TypeIIRMLMath.
@@ -45,12 +45,10 @@
 
 
 
-#ifndef __TypeIIRMLStep2IntermediateTimeProfiles__
-#define __TypeIIRMLStep2IntermediateTimeProfiles__
+#ifndef __TypeIIRMLStep1IntermediateProfiles__
+#define __TypeIIRMLStep1IntermediateProfiles__
 
-
-#include <TypeIIRMLPolynomial.h>
-#include <TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
 
 
 namespace TypeIIRMLMath
@@ -58,10 +56,10 @@ namespace TypeIIRMLMath
 
 
 //  ---------------------- Doxygen info ----------------------
-//! \fn void NegateStep2(double *ThisCurrentPosition, double *ThisCurrentVelocity, double *ThisTargetPosition, double *ThisTargetVelocity, bool *Inverted)
+//! \fn void NegateStep1(double *ThisCurrentPosition, double *ThisCurrentVelocity, double *ThisTargetPosition, double *ThisTargetVelocity)
 //!
 //! \brief
-//! Negate input values
+//! Negate input values during Step 1
 //!
 //! \param ThisCurrentPosition
 //! Pointer to a \c double value: Current position value for DOF \f$ k \f$
@@ -83,33 +81,27 @@ namespace TypeIIRMLMath
 //! at instant \f$ T_{i} \f$, \f$\ _{k}V_{i}^{\,trgt} \f$
 //! The sign of this value will be flipped.
 //!
-//! \param Inverted
-//! Pointer to \c bool value: This bit will be flipped; it indicates,
-//! whether the input values have been flipped even or odd times, such
-//! that succeeding functions can set-up the trajectory parameters
-//! correspondingly.
-//!
 //! \note
-//! This function is used in the Step 2 decision tree.
+//! This function is used in the Step 1 decision trees 1A, 1B, and 1C.
 //!
-//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree2()
-//! \sa TypeIIRMLMath::NegateStep1()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1A()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1B()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1C()
+//! \sa TypeIIRMLMath::NegateStep2()
 //  ----------------------------------------------------------
-void NegateStep2(       double              *ThisCurrentPosition
-                    ,   double              *ThisCurrentVelocity
-                    ,   double              *ThisTargetPosition
-                    ,   double              *ThisTargetVelocity
-                    ,   bool                *Inverted               );
-
+void NegateStep1(       double          *ThisCurrentPosition
+                    ,   double          *ThisCurrentVelocity
+                    ,   double          *ThisTargetPosition
+                    ,   double          *ThisTargetVelocity         );
 
 
 //  ---------------------- Doxygen info ----------------------
-//! \fn void VToVMaxStep2(double *ThisCurrentTime, double *ThisCurrentPosition, double *ThisCurrentVelocity, const double &MaxVelocity, const double &MaxAcceleration, MotionPolynomials *PolynomialsLocal, const bool &Inverted)
+//! \fn void VToVMaxStep1(double *TotalTime, double *ThisCurrentPosition, double *ThisCurrentVelocity, const double &MaxVelocity, const double &MaxAcceleration)
 //!
 //! \brief
-//! One intermediate Step 2 trajectory segment: v -> vmax (NegLin)
+//! One intermediate Step 1 trajectory segment: v -> +vmax (NegLin)
 //!
-//! \param ThisCurrentTime
+//! \param TotalTime
 //! Pointer to a \c double value: Time in seconds required for preceding
 //! trajectory segments. This value
 //! will be increased by the amount of time required time for this
@@ -119,13 +111,13 @@ void NegateStep2(       double              *ThisCurrentPosition
 //! Pointer to a \c double value: Current position value for DOF \f$ k \f$
 //! at instant \f$ T_{i} \f$, \f$\ _{k}P_{i} \f$.
 //! This value will be changed by the function in order to intermediately
-//! reach the maximum velocity value, \f$\ _{k}V_{i}^{\,max} \f$.
+//! reach an acceleration value of zero.
 //!
 //! \param ThisCurrentVelocity
 //! Pointer to a \c double value: Current velocity value for DOF \f$ k \f$
 //! at instant \f$ T_{i} \f$, \f$\ _{k}V_{i} \f$
-//! This value will be increased in order to intermediately reach the
-//! maximum velocity value, \f$\ _{k}V_{i}^{\,max} \f$.
+//! This value will be increased in order to intermediately reach an
+//! acceleration value of \f$\ _{k}A_{i}^{\,max} \f$.
 //!
 //! \param MaxVelocity
 //! Maximum allowed velocity value for DOF \f$ k \f$ at instant
@@ -135,40 +127,29 @@ void NegateStep2(       double              *ThisCurrentPosition
 //! Maximum allowed acceleration value for DOF \f$ k \f$ at instant
 //! \f$ T_{i} \f$, \f$\ _{k}A_{i}^{\,max} \f$.
 //!
-//! \param PolynomialsLocal
-//! Pointer to a \c MotionPolynomials object, which contains the
-//! complete trajectory for one single DOF \f$ k \f$ at instant
-//! \f$ T_{i} \f$, \f$ _k{\cal M}_{i}(t) \f$. This function will
-//! add one further trajectory segment to this object.
-//!
-//! \param Inverted
-//! A \c bool value that indicates whether the input values have been
-//! flipped even or odd times prior to the execution of this function
-//! (cf. TypeIIRMLMath::NegatePink()). The trajectory parameters in
-//! \c PolynomialsLocal will be set-up correspondingly.
 //!
 //! \note
-//! This function is used in the Step 2 decision tree.
+//! This function is used in the Step 1 decision trees 1A, 1B, and 1C.
 //!
-//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree2()
-//! \sa TypeIIRMLMath::VToVMaxStep1()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1A()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1B()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1C()
+//! \sa TypeIIRMLMath::VToVMaxStep2()
 //  ----------------------------------------------------------
-void VToVMaxStep2(      double              *ThisCurrentTime
-                    ,   double              *ThisCurrentPosition
-                    ,   double              *ThisCurrentVelocity
-                    ,   const double        &MaxVelocity
-                    ,   const double        &MaxAcceleration
-                    ,   MotionPolynomials   *PolynomialsLocal
-                    ,   const bool          &Inverted               );
+void VToVMaxStep1(      double          *TotalTime
+                    ,   double          *ThisCurrentPosition
+                    ,   double          *ThisCurrentVelocity
+                    ,   const double    &MaxVelocity
+                    ,   const double    &MaxAcceleration        );
 
 
 //  ---------------------- Doxygen info ----------------------
-//! \fn void VToZeroStep2(double *ThisCurrentTime, double *ThisCurrentPosition, double *ThisCurrentVelocity, const double &MaxAcceleration, MotionPolynomials *PolynomialsLocal, const bool &Inverted)
+//! \fn void VToZeroStep1(double *TotalTime, double *ThisCurrentPosition, double *ThisCurrentVelocity, const double &MaxAcceleration)
 //!
 //! \brief
-//! One intermediate Step 2 trajectory segment: v -> 0 (NegLin)
+//! One intermediate Step 1 trajectory segment: v -> 0 (NegLin)
 //!
-//! \param ThisCurrentTime
+//! \param TotalTime
 //! Pointer to a \c double value: Time in seconds required for preceding
 //! trajectory segments. This value
 //! will be increased by the amount of time required time for this
@@ -178,42 +159,31 @@ void VToVMaxStep2(      double              *ThisCurrentTime
 //! Pointer to a \c double value: Current position value for DOF \f$ k \f$
 //! at instant \f$ T_{i} \f$, \f$\ _{k}P_{i} \f$.
 //! This value will be changed by the function in order to intermediately
-//! reach a velocity value of zero.
+//! reach an acceleration value of zero.
 //!
 //! \param ThisCurrentVelocity
 //! Pointer to a \c double value: Current velocity value for DOF \f$ k \f$
 //! at instant \f$ T_{i} \f$, \f$\ _{k}V_{i} \f$
-//! This value will be increased in order to intermediately reach a
-//! velocity value of zero.
+//! This value will be increased in order to intermediately reach an
+//! acceleration value of \f$\ _{k}A_{i}^{\,max} \f$.
 //!
 //! \param MaxAcceleration
 //! Maximum allowed acceleration value for DOF \f$ k \f$ at instant
 //! \f$ T_{i} \f$, \f$\ _{k}A_{i}^{\,max} \f$.
 //!
-//! \param PolynomialsLocal
-//! Pointer to a \c MotionPolynomials object, which contains the
-//! complete trajectory for one single DOF \f$ k \f$ at instant
-//! \f$ T_{i} \f$, \f$ _k{\cal M}_{i}(t) \f$. This function will
-//! add one further trajectory segment to this object.
-//!
-//! \param Inverted
-//! A \c bool value that indicates whether the input values have been
-//! flipped even or odd times prior to the execution of this function
-//! (cf. TypeIIRMLMath::NegatePink()). The trajectory parameters in
-//! \c PolynomialsLocal will be set-up correspondingly.
-//!
 //! \note
-//! This function is used in the Step 2 decision tree.
+//! This function is used in the Step 1 decision trees 1A, 1B, and 1C.
 //!
-//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree2()
-//! \sa TypeIIRMLMath::VToZeroStep1()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1A()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1B()
+//! \sa TypeIIRMLMath::TypeIIRMLDecisionTree1C()
+//! \sa TypeIIRMLMath::VToZeroStep2()
 //  ----------------------------------------------------------
-void VToZeroStep2(      double              *ThisCurrentTime
-                    ,   double              *ThisCurrentPosition
-                    ,   double              *ThisCurrentVelocity
-                    ,   const double        &MaxAcceleration
-                    ,   MotionPolynomials   *PolynomialsLocal
-                    ,   const bool          &Inverted               );
+void VToZeroStep1(      double          *TotalTime
+                    ,   double          *ThisCurrentPosition
+                    ,   double          *ThisCurrentVelocity
+                    ,   const double    &MaxAcceleration        );
+
 
 }   // namespace TypeIIRMLMath
 

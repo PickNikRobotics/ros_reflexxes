@@ -43,13 +43,13 @@
 #define __ReflexxesAPI__
 
 
-#include <RMLPositionInputParameters.h>
-#include <RMLPositionOutputParameters.h>
-#include <RMLPositionFlags.h>
-#include <RMLVelocityInputParameters.h>
-#include <RMLVelocityOutputParameters.h>
-#include <RMLVelocityFlags.h>
-#include <RMLVector.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
+#include <libreflexxestype2/RMLPositionFlags.h>
+#include <libreflexxestype2/RMLVelocityInputParameters.h>
+#include <libreflexxestype2/RMLVelocityOutputParameters.h>
+#include <libreflexxestype2/RMLVelocityFlags.h>
+#include <libreflexxestype2/RMLVector.h>
 
 
 //  ---------------------- Doxygen info ----------------------
