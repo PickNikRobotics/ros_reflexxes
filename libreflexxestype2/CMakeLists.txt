@@ -33,7 +33,7 @@ if(SUPPORTED MATCHES "true")
   add_library(reflexxes ${libreflexxes_LOCATION})
   set_target_properties(reflexxes PROPERTIES LINKER_LANGUAGE CXX)
 
-  # Copy into devel/lib
+  # Copy library into build directory
   add_custom_command(
     TARGET reflexxes POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy ${libreflexxes_LOCATION} lib/libreflexxes.so
