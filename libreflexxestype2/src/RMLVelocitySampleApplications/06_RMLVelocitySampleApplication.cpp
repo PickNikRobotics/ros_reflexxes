@@ -41,10 +41,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <ReflexxesAPI.h>
-#include <RMLVelocityFlags.h>
-#include <RMLVelocityInputParameters.h>
-#include <RMLVelocityOutputParameters.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
+#include <libreflexxestype2/RMLVelocityFlags.h>
+#include <libreflexxestype2/RMLVelocityInputParameters.h>
+#include <libreflexxestype2/RMLVelocityOutputParameters.h>
 
 
 //*************************************************************************

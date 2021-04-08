@@ -41,10 +41,10 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLVelocity.h>
-#include <TypeIIRMLMath.h>
-#include <RMLVelocityInputParameters.h>
-#include <RMLVector.h>
+#include <libreflexxestype2/TypeIIRMLVelocity.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/RMLVelocityInputParameters.h>
+#include <libreflexxestype2/RMLVector.h>
 
 
 using namespace TypeIIRMLMath;

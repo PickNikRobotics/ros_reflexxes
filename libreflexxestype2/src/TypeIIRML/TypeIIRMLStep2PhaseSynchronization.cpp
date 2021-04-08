@@ -40,9 +40,9 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLDecisionTree2.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree2.h>
 
 using namespace TypeIIRMLMath;
 

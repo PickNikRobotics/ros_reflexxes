@@ -41,17 +41,17 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLStep1IntermediateProfiles.h>
-#include <TypeIIRMLStep1Profiles.h>
-#include <TypeIIRMLQuicksort.h>
-#include <TypeIIRMLDecisions.h>
-#include <TypeIIRMLDecisionTree1A.h>
-#include <TypeIIRMLDecisionTree1B.h>
-#include <TypeIIRMLDecisionTree1C.h>
-#include <RMLPositionInputParameters.h>
-#include <ReflexxesAPI.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLStep1IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
+#include <libreflexxestype2/TypeIIRMLQuicksort.h>
+#include <libreflexxestype2/TypeIIRMLDecisions.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree1A.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree1B.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree1C.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
 
 using namespace TypeIIRMLMath;
 

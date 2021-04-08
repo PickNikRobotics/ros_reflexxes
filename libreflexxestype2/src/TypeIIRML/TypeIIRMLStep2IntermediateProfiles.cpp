@@ -41,10 +41,10 @@
 //   please use a tab width of four characters.
 //  ----------------------------------------------------------
 
-#include <TypeIIRMLStep2IntermediateProfiles.h>
-#include <TypeIIRMLPolynomial.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLStep1IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep2IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLPolynomial.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLStep1IntermediateProfiles.h>
 
 using namespace TypeIIRMLMath;
 

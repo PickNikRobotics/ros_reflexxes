@@ -42,11 +42,11 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLDecisionTree1B.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLDecisions.h>
-#include <TypeIIRMLStep1IntermediateProfiles.h>
-#include <TypeIIRMLStep1Profiles.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree1B.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLDecisions.h>
+#include <libreflexxestype2/TypeIIRMLStep1IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
 
 
 //************************************************************************************
