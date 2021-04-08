@@ -41,14 +41,14 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <RMLVelocityInputParameters.h>
-#include <RMLVelocityOutputParameters.h>
-#include <RMLPositionInputParameters.h>
-#include <RMLPositionOutputParameters.h>
-#include <RMLVector.h>
-#include <RMLVelocityFlags.h>
-#include <TypeIIRMLVelocity.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/RMLVelocityInputParameters.h>
+#include <libreflexxestype2/RMLVelocityOutputParameters.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
+#include <libreflexxestype2/RMLVector.h>
+#include <libreflexxestype2/RMLVelocityFlags.h>
+#include <libreflexxestype2/TypeIIRMLVelocity.h>
 
 
 //*******************************************************************************************

@@ -40,12 +40,12 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLDecisionTree2.h>
-#include <TypeIIRMLStep2WithoutSynchronization.h>
-#include <RMLPositionInputParameters.h>
-#include <ReflexxesAPI.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLDecisionTree2.h>
+#include <libreflexxestype2/TypeIIRMLStep2WithoutSynchronization.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
 
 
 using namespace TypeIIRMLMath;

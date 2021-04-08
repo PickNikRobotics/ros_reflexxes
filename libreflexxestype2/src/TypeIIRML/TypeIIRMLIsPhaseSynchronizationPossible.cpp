@@ -41,11 +41,11 @@
 //  ----------------------------------------------------------
 
 
-#include <TypeIIRMLPosition.h>
-#include <TypeIIRMLMath.h>
-#include <TypeIIRMLStep1IntermediateProfiles.h>
-#include <TypeIIRMLStep1Profiles.h>
-#include <RMLPositionInputParameters.h>
+#include <libreflexxestype2/TypeIIRMLPosition.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLStep1IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep1Profiles.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
 
 using namespace TypeIIRMLMath;
 

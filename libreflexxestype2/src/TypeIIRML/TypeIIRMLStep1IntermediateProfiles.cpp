@@ -43,7 +43,7 @@
 
 
 
-#include <TypeIIRMLStep1IntermediateProfiles.h>
+#include <libreflexxestype2/TypeIIRMLStep1IntermediateProfiles.h>
 
 
 using namespace TypeIIRMLMath;

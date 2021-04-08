@@ -41,10 +41,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <ReflexxesAPI.h>
-#include <RMLPositionFlags.h>
-#include <RMLPositionInputParameters.h>
-#include <RMLPositionOutputParameters.h>
+#include <libreflexxestype2/ReflexxesAPI.h>
+#include <libreflexxestype2/RMLPositionFlags.h>
+#include <libreflexxestype2/RMLPositionInputParameters.h>
+#include <libreflexxestype2/RMLPositionOutputParameters.h>
 
 
 //*************************************************************************

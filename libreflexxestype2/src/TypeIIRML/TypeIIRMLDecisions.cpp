@@ -42,8 +42,8 @@
 
 
 
-#include <TypeIIRMLDecisions.h>
-#include <TypeIIRMLMath.h>
+#include <libreflexxestype2/TypeIIRMLDecisions.h>
+#include <libreflexxestype2/TypeIIRMLMath.h>
 
 
 //************************************************************************************
