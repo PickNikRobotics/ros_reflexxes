@@ -138,6 +138,36 @@ inline bool setLimits(RMLPositionInputParameters* reflexxes_params, const size_t
   return true;
 }
 
+/** \brief Set velocity and acceleration limits. */
+inline bool setScaledLimits(RMLPositionInputParameters* reflexxes_params,
+                            const size_t num_dof,
+                            double velocity_scale,
+                            double acceleration_scale,
+                            const std::vector<double>& max_velocities,
+                            const std::vector<double>& max_accelerations)
+{
+  if (max_velocities.size() != max_accelerations.size() || max_velocities.size() != num_dof)
+  {
+    std::cout << "An input vector does not match the degrees of freedom." << std::endl;
+    return false;
+  }
+
+  if (acceleration_scale < 0 || velocity_scale < 0)
+  {
+    std::cout << "Velocity and acceleration scales should be in the range [0, 1]" << std::endl;
+    return false;
+  }
+
+  for (size_t joint_idx = 0; joint_idx < num_dof; ++joint_idx)
+  {
+    reflexxes_params->MaxVelocityVector->VecData[joint_idx] = velocity_scale * max_velocities.at(joint_idx);
+    reflexxes_params->MaxAccelerationVector->VecData[joint_idx] = acceleration_scale * max_accelerations.at(joint_idx);
+    reflexxes_params->MaxJerkVector->VecData[joint_idx] = DBL_MAX;
+  }
+
+  return true;
+}
+
 /** \brief Set all entries in the selection vector true, to enable all DOF. */
 inline void setSelectionVectorAllTrue(RMLPositionInputParameters* reflexxes_params, const size_t num_dof)
 {
