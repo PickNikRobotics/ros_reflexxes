@@ -154,7 +154,7 @@ inline bool setScaledLimits(RMLPositionInputParameters* reflexxes_params,
 
   if (acceleration_scale < 0 || velocity_scale < 0)
   {
-    std::cout << "Velocity and acceleration scales should be in the range [0, 1]" << std::endl;
+    std::cout << "Velocity and acceleration scales should be greater than zero" << std::endl;
     return false;
   }
 
