@@ -41,6 +41,7 @@ install(
     reflexxes
   LIBRARY DESTINATION
     lib
+)
 
 install(
   DIRECTORY
