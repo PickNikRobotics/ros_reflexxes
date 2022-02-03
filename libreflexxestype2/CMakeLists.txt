@@ -1,55 +1,53 @@
 cmake_minimum_required(VERSION 3.5)
 project(libreflexxestype2)
 
-# ROS2 minimum versions
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
-
 find_package(ament_cmake REQUIRED)
 
 include_directories(include)
 
-find_program(CMAKE_DPKG dpkg /bin /usr/bin /usr/local/bin)
-if(CMAKE_DPKG)
-  exec_program(dpkg ARGS --print-architecture OUTPUT_VARIABLE CMAKE_DPKG_ARCH)
-  if(CMAKE_DPKG_ARCH MATCHES "amd64")
-    message(STATUS "+++++++++++++++++ DETECTED 64 bit +++++++++++++++++")
-    set(SUPPORTED "true")
-  else()
-    message(WARNING "+++++++++++++++++ UNSUPPORTED ARCHITECTURE, UNABLE TO USE ReflexxesTypeII +++++++++++++++++")
-    hset(SUPPORTED "false")
-  endif()
-endif()
+add_library(reflexxes
+src/TypeIIRML/ReflexxesAPI.cpp
+src/TypeIIRML/TypeIIRMLCalculatePositionalExtrems.cpp
+src/TypeIIRML/TypeIIRMLDecisions.cpp
+src/TypeIIRML/TypeIIRMLDecisionTree1A.cpp
+src/TypeIIRML/TypeIIRMLDecisionTree1B.cpp
+src/TypeIIRML/TypeIIRMLDecisionTree1C.cpp
+src/TypeIIRML/TypeIIRMLDecisionTree2.cpp
+src/TypeIIRML/TypeIIRMLFallBackStrategy.cpp
+src/TypeIIRML/TypeIIRMLIsPhaseSynchronizationPossible.cpp
+src/TypeIIRML/TypeIIRMLPolynomial.cpp
+src/TypeIIRML/TypeIIRMLPosition.cpp
+src/TypeIIRML/TypeIIRMLQuicksort.cpp
+src/TypeIIRML/TypeIIRMLSetupModifiedSelectionVector.cpp
+src/TypeIIRML/TypeIIRMLStep1.cpp
+src/TypeIIRML/TypeIIRMLStep1IntermediateProfiles.cpp
+src/TypeIIRML/TypeIIRMLStep1Profiles.cpp
+src/TypeIIRML/TypeIIRMLStep2.cpp
+src/TypeIIRML/TypeIIRMLStep2IntermediateProfiles.cpp
+src/TypeIIRML/TypeIIRMLStep2PhaseSynchronization.cpp
+src/TypeIIRML/TypeIIRMLStep2Profiles.cpp
+src/TypeIIRML/TypeIIRMLStep2WithoutSynchronization.cpp
+src/TypeIIRML/TypeIIRMLStep3.cpp
+src/TypeIIRML/TypeIIRMLVelocityCalculatePositionalExtrems.cpp
+src/TypeIIRML/TypeIIRMLVelocity.cpp
+src/TypeIIRML/TypeIIRMLVelocityFallBackStrategy.cpp
+src/TypeIIRML/TypeIIRMLVelocityIsPhaseSynchronizationPossible.cpp
+src/TypeIIRML/TypeIIRMLVelocityMethods.cpp
+src/TypeIIRML/TypeIIRMLVelocitySetupPhaseSyncSelectionVector.cpp
+)
 
-if(SUPPORTED MATCHES "true")
-  # Set location of build output
-  set(libreflexxes_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/Linux/x64/release/lib/shared/libReflexxesTypeII.so)
+install(
+  TARGETS
+    reflexxes
+  LIBRARY DESTINATION
+    lib
 
-  # Build Reflexxes library with a Make file
-  add_custom_command(
-    OUTPUT ${libreflexxes_LOCATION}
-    COMMAND make -C "${CMAKE_CURRENT_SOURCE_DIR}/Linux" clean64 all64 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  )
-  add_library(reflexxes ${libreflexxes_LOCATION})
-  set_target_properties(reflexxes PROPERTIES LINKER_LANGUAGE CXX)
-
-  # Copy library into build directory
-  add_custom_command(
-    TARGET reflexxes POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy ${libreflexxes_LOCATION} lib/libreflexxes.so
-  )
-
-  # Install header files
-  install(DIRECTORY include/
-    DESTINATION include
-  )
-
-  # Install library file
-  install(FILES ${libreflexxes_LOCATION}
-    DESTINATION lib
-    RENAME libreflexxes.so
-  )
-endif()
+install(
+  DIRECTORY
+    include/
+  DESTINATION
+    include
+)
 
 # Export via these functions rather than ament_export_targets since we aren't doing a target based install
 ament_export_include_directories(include)
